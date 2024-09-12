@@ -10,28 +10,27 @@ document.addEventListener("DOMContentLoaded", () => {
             });
     });
 
-    document.getElementById("solveRoom2").addEventListener("click", () => {
+     // Room 2: Set Chamber
+     document.getElementById("solveRoom2").addEventListener("click", () => {
         const jsConcepts = new Set(['closure', 'scope', 'hoisting']);
-        // 🪲 Bug: What's mssing from JS concepts?
         const reactConcepts = new Set(['components', 'jsx', 'hooks', 'async']);
-        // 🪲 Bug: Incorrect function call
-        const commonConcepts = findIntersection(jsConcepts, jsConcepts);
+        // Fix: Find common concepts between JS and React
+        const commonConcepts = findIntersection(jsConcepts, reactConcepts);
         document.getElementById("room2Result").textContent = `The code to unlock the door is: ${Array.from(commonConcepts).join(', ')}`;
     });
-
-    // 🪲 Bug: Asynchronous function ?
+    // Room 3: Asynchronous Labyrinth
     document.getElementById("solveRoom3").addEventListener("click", () => {
         fetch('directions.json') 
-            .then(response => response.json())
-            .then(directions => {
-                navigateLabyrinth(directions)
-                    .then(message => {
-                        // 🪲 Bug: Incorrect method
-                        document.getElementById("room3Result").innerHTML = message;
-                    });
-            });
-    });
+        .then(response => response.json())
+        .then(directions => {
+            navigateLabyrinth(directions)
+                .then(message => {
+                    document.getElementById("room3Result").innerHTML = message;
+                });
+        });
 });
+});
+
 
 function findMostRecentBook(books) {
     // 🪲 Bug: Logic error
